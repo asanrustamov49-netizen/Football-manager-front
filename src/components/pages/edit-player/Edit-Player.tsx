@@ -6,8 +6,10 @@ import { useUpdatePlayer } from "@/hooks/players/useUpdatePlayer";
 import { useGetOnePlayer } from "@/hooks/players/useGetOnePlayer";
 import { IPlayerBody } from "@/hooks/types/types";
 import { useForm } from "react-hook-form";
+import { useGetTeams } from "@/hooks/teams/useGetTeams";
 
 const EditPlayer = () => {
+  const {data: teams} = useGetTeams()
   const [success, setSuccess] = useState<boolean>(false);
   const params = useParams<{ id: string }>();
   const { mutate: updateplayer } = useUpdatePlayer();
@@ -32,6 +34,7 @@ const EditPlayer = () => {
         age: player.age,
         salary: player.salary,
         image: player.image,
+        team_id: player.teamname,
       });
     }
   }, [player, reset]);
@@ -82,15 +85,21 @@ const EditPlayer = () => {
               />
             </div>
 
-            <div className={scss.inputGroup}>
+           <div className={scss.inputGroup}>
               <label>Команда</label>
 
-              <select {...register("team_id", { valueAsNumber: true })}>
+              <select
+                {...register("team_id", {
+                  setValueAs: (value) => (value === "" ? null : Number(value)),
+                })}
+              >
                 <option value="">Выберите команду</option>
-                <option value={1}>Real Madrid</option>
-                <option value={2}>Barcelona</option>
-                <option value={3}>Manchester City</option>
-                <option value={4}>Liverpool</option>
+                <option value="">Free Agent</option>
+                {teams?.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
 

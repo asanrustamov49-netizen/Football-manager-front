@@ -9,14 +9,11 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 1000;
   }
-
   .modal {
     width: 420px;
     background: #fff;
@@ -24,19 +21,16 @@
     padding: 35px;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-
     h2 {
       color: #16a34a;
       margin-bottom: 15px;
       font-size: 28px;
     }
-
     p {
       color: #666;
       margin-bottom: 25px;
       font-size: 17px;
     }
-
     .btns {
       display: flex;
       flex-direction: column;
@@ -52,7 +46,6 @@
         font-weight: 600;
         cursor: pointer;
         transition: 0.25s;
-
         &:hover {
           background: #1d4ed8;
         }
@@ -60,18 +53,15 @@
     }
   }
 }
-
 .container {
   width: 100%;
   max-width: 520px;
 }
-
 .card {
   background: #ffffff;
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-
   h1 {
     text-align: center;
     margin-bottom: 35px;
@@ -79,90 +69,68 @@
     font-size: 30px;
     font-weight: 700;
   }
-
   form {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 }
-
 .inputGroup {
   display: flex;
   flex-direction: column;
   gap: 9px;
-
   label {
     font-size: 15px;
     font-weight: 600;
     color: #374151;
   }
-
   input,
   select {
     height: 52px;
     padding: 0 16px;
-
     border: 1px solid #d1d5db;
     border-radius: 12px;
-
     font-size: 15px;
     color: #111827;
-
     outline: none;
     background: #fff;
-
     transition: all 0.25s ease;
-
     &:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     }
-
     &::placeholder {
       color: #9ca3af;
     }
   }
-
   select {
     cursor: pointer;
   }
 }
-
 .submitBtn {
   margin-top: 12px;
-
   height: 54px;
-
   border: none;
   border-radius: 12px;
-
   background: #2563eb;
   color: white;
-
   font-size: 16px;
   font-weight: 700;
-
   cursor: pointer;
-
   transition: 0.25s ease;
-
   &:hover {
     background: #1d4ed8;
     transform: translateY(-2px);
   }
-
   &:active {
     transform: scale(0.97);
   }
 }
-
-@media (max-width: 600px) {
-  .card {
-    padding: 25px;
-
-    h1 {
-      font-size: 24px;
-    }
-  }
-}
+// @media (max-width: 600px) {
+//   .card {
+//     padding: 25px;
+//     h1 {
+//       font-size: 24px;
+//     }
+//   }
+// }

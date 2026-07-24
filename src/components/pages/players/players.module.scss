@@ -42,8 +42,16 @@
   max-width: 1200px;
   margin: 0 auto;
   .playerImage {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
+  }
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: contain;
   }
 
   h1 {
@@ -78,6 +86,14 @@
   }
 
   tbody {
+    .logotip{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      border-bottom: 1px solid #eee;
+      padding: 10px 20px 35px 0px;
+    }
     tr {
       transition: 0.25s;
 

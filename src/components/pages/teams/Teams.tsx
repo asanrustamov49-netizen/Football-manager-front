@@ -15,7 +15,6 @@ const Teams = () => {
       <div className="container">
         <div className={scss.mainContainer}>
           <h1>Команды</h1>
-
           <div className={scss.tableWrapper}>
             {teams?.length ? (
               <table>
@@ -29,24 +28,17 @@ const Teams = () => {
                     <th>Действия</th>
                   </tr>
                 </thead>
-
                 <tbody>
                   {teams?.map((item) => (
                     <tr key={item.id}>
                       <td>
-                        <Image
-                          src={item.logo}
-                          alt={item.name}
-                          width={45}
-                          height={45}
-                          className={scss.logo}
-                        />
+                        <img src={item.logo} alt="" className={scss.logo} />
                       </td>
 
                       <td>{item.name}</td>
                       <td>{item.country}</td>
                       <td>{item.coach}</td>
-                      <td>{item.players}</td>
+                      <td>{item.players_count}</td>
 
                       <td>
                         <div className={scss.actions}>

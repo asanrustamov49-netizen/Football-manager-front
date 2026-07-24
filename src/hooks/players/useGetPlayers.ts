@@ -6,7 +6,7 @@ export const useGetPlayers = () =>
   useQuery({
     queryKey: ["players"],
     queryFn: async () => {
-      const response = await playerApi.get<IGetPlayerResponse>("");
+      const response = await playerApi.get<IGetPlayerResponse>("/with-teams");
       return response.data.data;
     },
   });

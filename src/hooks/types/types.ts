@@ -26,6 +26,7 @@ export interface ITeamResult {
   country: string;
   coach: string;
   logo: string;
+  players_count: number;
 }
 
 export interface IPlayerBody {
@@ -33,7 +34,7 @@ export interface IPlayerBody {
   age: number;
   image: string;
   salary: number;
-  team_id: number;
+  team_id: number | null;
 }
 
 export interface IGetPlayerResponse {
@@ -57,5 +58,9 @@ export interface IPlayerResult {
   age: number;
   image: string;
   salary: number;
+  teamname: string;
+  coach: string;
+  country: string;
   team_id: number;
+  logo: string;
 }

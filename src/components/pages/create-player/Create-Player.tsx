@@ -5,10 +5,13 @@ import { IPlayerBody } from "@/hooks/types/types";
 import { useCreatePlayer } from "@/hooks/players/useCreatePlayer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useGetPlayers } from "@/hooks/players/useGetPlayers";
+import { useGetTeams } from "@/hooks/teams/useGetTeams";
 
 const CreatePlayer = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const { mutate: createPlayer } = useCreatePlayer();
+  const { data: teams } = useGetTeams();
   const { push } = useRouter();
   const { handleSubmit, register, reset } = useForm<IPlayerBody>();
   const handleData = (data: IPlayerBody) => {
@@ -71,12 +74,18 @@ const CreatePlayer = () => {
             <div className={scss.inputGroup}>
               <label>Команда</label>
 
-              <select {...register("team_id", { valueAsNumber: true })}>
+              <select
+                {...register("team_id", {
+                  setValueAs: (value) => (value === "" ? null : Number(value)),
+                })}
+              >
                 <option value="">Выберите команду</option>
-                <option value={1}>Real Madrid</option>
-                <option value={2}>Barcelona</option>
-                <option value={3}>Manchester City</option>
-                <option value={4}>Liverpool</option>
+                <option value="">Free Agent</option>
+                {teams?.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
 

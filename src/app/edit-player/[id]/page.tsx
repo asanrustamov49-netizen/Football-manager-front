@@ -1,4 +1,4 @@
-"use cleint"
+"use client";
 import EditPlayer from "@/components/pages/edit-player/Edit-Player";
 import { useParams } from "next/navigation";
 

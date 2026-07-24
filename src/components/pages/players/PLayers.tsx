@@ -15,7 +15,6 @@ const Players = () => {
       <div className="container">
         <div className={scss.mainContainer}>
           <h1>Игроки</h1>
-
           <div className={scss.tableWrapper}>
             {players?.length ? (
               <table>
@@ -33,20 +32,26 @@ const Players = () => {
                   {players?.map((item) => (
                     <tr key={item.id}>
                       <td>
-                        <Image
+                        <img
                           src={item.image}
-                          alt={item.name}
-                          width={45}
-                          height={45}
+                          alt=""
                           className={scss.playerImage}
                         />
                       </td>
-
                       <td>{item.name}</td>
                       <td>{item.age}</td>
                       <td>${item.salary.toLocaleString()}</td>
-                      {/* <td>{item.team}</td> */}
-
+                      <td className={scss.logotip}>
+                        <img
+                          src={
+                            item.teamname === null
+                              ? "https://s3-eu-west-1.amazonaws.com/inqaku-master/liveclublogos/25805_logo.jpg"
+                              : item.logo
+                          }
+                          alt=""
+                        />
+                        {item.teamname === null ? "Free Agent" : item.teamname}
+                      </td>
                       <td>
                         <div className={scss.actions}>
                           <button

@@ -42,8 +42,10 @@
   max-width: 1200px;
   margin: 0 auto;
   .logo {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
   }
   h1 {
     margin-bottom: 30px;

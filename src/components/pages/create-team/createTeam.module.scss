@@ -22,73 +22,63 @@
   padding: 35px;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-
   h2 {
     color: #16a34a;
     margin-bottom: 15px;
     font-size: 28px;
   }
-
   p {
     color: #666;
     margin-bottom: 25px;
     font-size: 17px;
   }
-
-  .btns{
+  .btns {
     display: flex;
     flex-direction: column;
     gap: 20px;
     button {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 12px;
-    background: #2563eb;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.25s;
-
-    &:hover {
-      background: #1d4ed8;
+      width: 100%;
+      height: 50px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+      &:hover {
+        background: #1d4ed8;
+      }
     }
   }
-  }
 }
-
 .card {
   background: white;
   padding: 35px;
   width: 500px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
   h1 {
     margin-bottom: 30px;
     text-align: center;
     font-size: 30px;
     color: #222;
   }
-
   form {
     display: flex;
     flex-direction: column;
     gap: 22px;
   }
 }
-
 .inputGroup {
   display: flex;
   flex-direction: column;
   gap: 8px;
-
   label {
     font-weight: 600;
     color: #444;
   }
-
   input {
     height: 50px;
     padding: 0 16px;
@@ -97,13 +87,11 @@
     font-size: 15px;
     outline: none;
     transition: 0.2s;
-
     &:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
   }
-
   // input {
   //   height: auto;
   //   padding: 12px;
@@ -111,7 +99,6 @@
   //   background: #fff;
   // }
 }
-
 .submitBtn {
   margin-top: 10px;
   height: 52px;
@@ -123,11 +110,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
-
   &:hover {
     background: #1d4ed8;
   }
-
   &:active {
     transform: scale(0.98);
   }
