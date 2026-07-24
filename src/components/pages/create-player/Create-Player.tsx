@@ -5,6 +5,8 @@ import { IPlayerBody } from "@/hooks/types/types";
 import { useCreatePlayer } from "@/hooks/players/useCreatePlayer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { playerSchema, PlayerForm } from "@/validation/players.schema";
 import { useGetPlayers } from "@/hooks/players/useGetPlayers";
 import { useGetTeams } from "@/hooks/teams/useGetTeams";
 
@@ -13,7 +15,14 @@ const CreatePlayer = () => {
   const { mutate: createPlayer } = useCreatePlayer();
   const { data: teams } = useGetTeams();
   const { push } = useRouter();
-  const { handleSubmit, register, reset } = useForm<IPlayerBody>();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm<PlayerForm>({
+    resolver: zodResolver(playerSchema),
+  });
   const handleData = (data: IPlayerBody) => {
     createPlayer(data, {
       onSuccess: () => {
@@ -42,24 +51,33 @@ const CreatePlayer = () => {
                 type="text"
                 placeholder="Введите имя игрока"
               />
+              {errors.name && (
+                <span className={scss.error}>{errors.name.message}</span>
+              )}
             </div>
 
             <div className={scss.inputGroup}>
               <label>Возраст</label>
               <input
-                {...register("age")}
+                {...register("age", { valueAsNumber: true })}
                 type="number"
                 placeholder="Введите возраст"
               />
+              {errors.age && (
+                <span className={scss.error}>{errors.age.message}</span>
+              )}
             </div>
 
             <div className={scss.inputGroup}>
               <label>Зарплата</label>
               <input
-                {...register("salary")}
+                {...register("salary", { valueAsNumber: true })}
                 type="number"
                 placeholder="Введите зарплату"
               />
+              {errors.salary && (
+                <span className={scss.error}>{errors.salary.message}</span>
+              )}
             </div>
 
             <div className={scss.inputGroup}>
@@ -69,6 +87,9 @@ const CreatePlayer = () => {
                 type="text"
                 placeholder="Введите ссылку на изображение"
               />
+              {errors.image && (
+                <span className={scss.error}>{errors.image.message}</span>
+              )}
             </div>
 
             <div className={scss.inputGroup}>
@@ -87,6 +108,9 @@ const CreatePlayer = () => {
                   </option>
                 ))}
               </select>
+              {errors.team_id && (
+                <span className={scss.error}>{errors.team_id.message}</span>
+              )}
             </div>
 
             <button type="submit" className={scss.submitBtn}>

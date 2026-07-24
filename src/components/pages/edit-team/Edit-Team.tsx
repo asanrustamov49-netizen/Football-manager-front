@@ -6,6 +6,8 @@ import { ITeamBody, ITeamNewBody } from "@/hooks/types/types";
 import { useGetOneTeam } from "@/hooks/teams/useGetOneTeam";
 import { useParams } from "next/navigation";
 import { useUpdateTeam } from "@/hooks/teams/useUpdateTeam";
+import { TeamForm, teamSchema } from "@/validation/teams.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const EditTeam = () => {
   const [success, setSuccess] = useState<boolean>(false);
@@ -13,7 +15,14 @@ const EditTeam = () => {
   const { mutate: updateteam } = useUpdateTeam();
   const { data: team } = useGetOneTeam(Number(params.id));
   const { push } = useRouter();
-  const { handleSubmit, register, reset } = useForm<ITeamBody>();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm<TeamForm>({
+    resolver: zodResolver(teamSchema),
+  });
   const handleData = (data: ITeamBody) => {
     updateteam(
       { id: Number(params.id), body: data },
@@ -54,6 +63,9 @@ const EditTeam = () => {
                   type="text"
                   placeholder="Введите название команды"
                 />
+                {errors.name && (
+                  <span className={scss.error}>{errors.name.message}</span>
+                )}
               </div>
 
               <div className={scss.inputGroup}>
@@ -63,6 +75,9 @@ const EditTeam = () => {
                   type="text"
                   placeholder="Введите страну"
                 />
+                {errors.country && (
+                  <span className={scss.error}>{errors.country.message}</span>
+                )}
               </div>
 
               <div className={scss.inputGroup}>
@@ -72,6 +87,9 @@ const EditTeam = () => {
                   type="text"
                   placeholder="Введите имя тренера"
                 />
+                {errors.coach && (
+                  <span className={scss.error}>{errors.coach.message}</span>
+                )}
               </div>
 
               <div className={scss.inputGroup}>
@@ -81,10 +99,13 @@ const EditTeam = () => {
                   type="text"
                   placeholder="Введите ссылку на логотип"
                 />
+                {errors.logo && (
+                  <span className={scss.error}>{errors.logo.message}</span>
+                )}
               </div>
 
               <button type="submit" className={scss.submitBtn}>
-               Изменить команду
+                Изменить команду
               </button>
             </form>
           </div>
