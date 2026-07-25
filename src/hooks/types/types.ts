@@ -5,6 +5,24 @@ export interface ITeamBody {
   logo: string;
 }
 
+export interface getStatResponse {
+  message: string;
+  data: {
+    totalPlayers: string;
+    totalTeams: string;
+    averageSalary: number;
+    highestSalary: number;
+    youngestPlayer: {
+      name: string;
+      age: number;
+    };
+    oldestPlayer: {
+      name: string;
+      age: number;
+    };
+  };
+}
+
 export interface IGetTeamResponse {
   message: string;
   data: ITeamResult[];

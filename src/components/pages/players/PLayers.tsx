@@ -5,11 +5,23 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { useGetPlayers } from "@/hooks/players/useGetPlayers";
 import { useDeletePlayer } from "@/hooks/players/useDeletePlayer";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { IPlayerBody, IPlayerResult } from "@/hooks/types/types";
 
 const Players = () => {
   const { data: players } = useGetPlayers();
+  const [selectedPlayer, setSelectedPlayer] = useState<IPlayerResult | null>(
+    null,
+  );
   const { mutate: deletePlayer } = useDeletePlayer();
   const { push } = useRouter();
+  const handleDelete = () => {
+    if (selectedPlayer === null) return;
+
+    deletePlayer(selectedPlayer.id);
+
+    setSelectedPlayer(null);
+  };
   return (
     <section className={scss.container}>
       <div className="container">
@@ -62,7 +74,7 @@ const Players = () => {
                           </button>
 
                           <button
-                            onClick={() => deletePlayer(item.id)}
+                            onClick={() => setSelectedPlayer(item)}
                             className={scss.delete}
                           >
                             <FaTrash />
@@ -84,6 +96,34 @@ const Players = () => {
           </div>
         </div>
       </div>
+      {selectedPlayer !== null && (
+        <div className={scss.modalOverlay}>
+          <div className={scss.modal}>
+            <div className={scss.icon}>⚠️</div>
+
+            <h2>Удалить игрока?</h2>
+
+            <p>
+              Вы действительно хотите удалить {selectedPlayer.name}?
+              <br />
+              Это действие нельзя отменить.
+            </p>
+
+            <div className={scss.buttons}>
+              <button
+                className={scss.cancel}
+                onClick={() => setSelectedPlayer(null)}
+              >
+                Отмена
+              </button>
+
+              <button className={scss.deleteBtn} onClick={handleDelete}>
+                Удалить
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
