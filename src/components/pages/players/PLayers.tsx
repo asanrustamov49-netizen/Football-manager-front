@@ -10,18 +10,16 @@ import { IPlayerBody, IPlayerResult } from "@/hooks/types/types";
 
 const Players = () => {
   const { data: players } = useGetPlayers();
-  const [selectedPlayer, setSelectedPlayer] = useState<IPlayerResult | null>(
-    null,
-  );
   const { mutate: deletePlayer } = useDeletePlayer();
   const { push } = useRouter();
   const handleDelete = () => {
     if (selectedPlayer === null) return;
-
     deletePlayer(selectedPlayer.id);
-
     setSelectedPlayer(null);
   };
+  const [selectedPlayer, setSelectedPlayer] = useState<IPlayerResult | null>(
+    null,
+  );
   return (
     <section className={scss.container}>
       <div className="container">

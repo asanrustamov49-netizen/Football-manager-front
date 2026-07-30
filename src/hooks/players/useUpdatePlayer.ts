@@ -1,5 +1,5 @@
+"use client"
 import { useMutation } from "@tanstack/react-query";
-import { teamApi } from "../api/teamApi";
 import { IPlayerNewBody, ITeamBody, ITeamNewBody } from "../types/types";
 import { playerApi } from "../api/playerApi";
 

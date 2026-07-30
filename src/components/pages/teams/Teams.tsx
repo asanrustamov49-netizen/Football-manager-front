@@ -15,9 +15,7 @@ const Teams = () => {
   const { push } = useRouter();
   const handleDelete = () => {
     if (selectedTeam === null) return;
-
     deleteTeam(selectedTeam.id);
-
     setSelectedTeam(null);
   };
   return (
